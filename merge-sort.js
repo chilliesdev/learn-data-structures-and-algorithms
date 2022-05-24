@@ -6,6 +6,8 @@ function mergeSort(list) {
     Divide: Find the midpoint of the list and divide into sublists
     Conquer: Recursively sort the sublist created in previous step
     Combine: Merge the sorted sublists created in previous step
+
+    takes over of O(n log n)
     */
    
    if (list.length <= 1) {
@@ -22,6 +24,8 @@ function split(list) {
   /*
     Divide the unsorted list at midpoint into sublists
     Return two sublists - left and right
+
+    Takes overall O(log n) time
     */
 
   let mid = Math.floor(list.length / 2);
@@ -36,6 +40,8 @@ function merge(left, right) {
   /*
     Merges two lists (arrays), sorting them in the process
     Returns a new merged list
+
+    takes overall of O(n) time
     */
 
   let l = [];
@@ -65,7 +71,17 @@ function merge(left, right) {
   return l;
 }
 
+function verifySorted(list) {
+  if (list.length <= 1){
+    return true;
+  }
+
+  return list[0] < list[1] && verifySorted(list.slice(1));
+}
+
 let alist = [54, 62, 93, 17, 77, 31, 44, 55, 20];
 
 l = mergeSort(alist);
-console.log(l);
+// console.log(verifySorted(alist));
+console.log(verifySorted(l));
+

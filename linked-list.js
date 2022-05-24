@@ -123,6 +123,24 @@ class linkedList{
         }
     }
 
+    nodeAtIndex(index) {
+        if(index < 1){
+            return this.head;
+        } else {
+            let current = this.head;
+            let position = 0;
+
+            console.log("current: ",current);
+    
+            while (index < position){
+                current = current.nextNode;
+                position += 1;
+            }
+            
+            return current;
+        }
+    }
+
     repr() {
         // Return a string representation of the list
         // Takes 0(n)
@@ -146,15 +164,16 @@ class linkedList{
     }
 }
 
+module.exports = linkedList
 // ADD
-let list = new linkedList();
-list.add(10);
-list.add(20);
-list.add(50);
+// let list = new linkedList();
+// list.add(10);
+// list.add(20);
+// list.add(50);
 
-// INSERT
-console.log(list.insert(40, 1));
-console.log(list.repr());
+// // INSERT
+// console.log(list.insert(40, 1));
+// console.log(list.repr());
 
 // console.log(list.size());
 // console.log(list.repr());
