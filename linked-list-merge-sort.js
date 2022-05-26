@@ -1,6 +1,6 @@
 const linkedList = require("./linked-list");
 
-function mergeSort(linkedList) {
+function mergeSort(linkedlist) {
     /*
     Sorts a linked list in ascending order
     - Recursively divide the linked list into sublists containing a single node
@@ -9,14 +9,14 @@ function mergeSort(linkedList) {
     returns a sorted linked list
     */
 
-    if (linkedList.size() === 0){
-        return linkedList;
-    } else if (linkedList.head === null) {
-        return linkedList;
+    if (linkedlist.size() <= 1){
+        return linkedlist;
+    } else if (linkedlist.head === null) {
+        return linkedlist;
     }
 
-    let leftHalf = split(linkedList).left;
-    let rightHalf = split(linkedList).right;
+    let leftHalf = split(linkedlist).leftHalf;
+    let rightHalf = split(linkedlist).rightHalf;
 
     let left = mergeSort(leftHalf);
     let right = mergeSort(rightHalf);
@@ -28,26 +28,23 @@ function split(linkedlist) {
     /*
     Divide the unsorted list at midpoint into sublist
     */
-   if(linkedlist === null || linkedlist.head === null){
+   if( linkedlist === null || linkedlist.head === null){
        let leftHalf = linkedlist;
        let rightHalf = null;
 
        return { leftHalf, rightHalf };
    } else {
-       let mid = Math.floor(linkedlist.size() / 2 );
-        console.log("mid: ", mid);
-       let midNode = linkedlist.nodeAtIndex(mid - 1);
-    
-       var leftHalf = linkedlist;
-    
-       var rightHalf = new linkedList();
-       rightHalf.head = midNode.nextNode;
-    
-       midNode.nextNode = null;
-    
-       return { leftHalf, rightHalf };
+        let size = linkedlist.size() / 2 
+        let mid = Math.floor(size);
+        let midNode = linkedlist.nodeAtIndex(mid - 1);
+        
+        var leftHalf = linkedlist; 
+        var rightHalf = new linkedList();
+        rightHalf.head = midNode.nextNode;
+        midNode.nextNode = null;
+        
+        return { leftHalf, rightHalf };
    }
-
 }
 
 function merge(left, right) {
@@ -62,7 +59,7 @@ function merge(left, right) {
 
     // Add a fake head that is discarded later
     merged.add(0);
-
+    
     // Set current to the head of the linked list 
     let current = merged.head;
 
@@ -73,7 +70,7 @@ function merge(left, right) {
     // Iterate over left and right until reach the tail node
     // of either
     while (leftHead || rightHead) {
-
+        
         // If the head node of left is null, we're passed the tail
         // Add the node from right to merged linked list
         if(leftHead === null){
@@ -97,18 +94,16 @@ function merge(left, right) {
             let rightData = rightHead.data;
 
             // If data on left is less than right, set current to left node
+            // Move left head to next node
             if(leftData < rightData) {
                 current.nextNode = leftHead;
-                
-                // Move left head to next node
                 leftHead = leftHead.nextNode;
             }
 
             // If data on right is less than left, set current to right node
+            // Move right head to next node
             else {
                 current.nextNode = rightHead;
-
-                // Move right head to next node
                 rightHead = rightHead.nextNode;
             }
         }
@@ -130,8 +125,7 @@ list.add(2);
 list.add(44);
 list.add(15);
 list.add(200);
+console.log(list.repr());
 
-// console.log(list.repr());
-// console.log(split(list));
 let sortedLinkedList = mergeSort(list);
-console.log(sortedLinkedList);
+console.log(sortedLinkedList.repr());

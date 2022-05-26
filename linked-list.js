@@ -6,7 +6,7 @@ class Node{
     nextNode = null;
 
     constructor(data){
-        this.data = data
+        this.data = data;
     }
 
     repr(){
@@ -124,15 +124,13 @@ class linkedList{
     }
 
     nodeAtIndex(index) {
-        if(index < 1){
+        if(index === 0){
             return this.head;
         } else {
             let current = this.head;
             let position = 0;
-
-            console.log("current: ",current);
     
-            while (index < position){
+            while (position < index){
                 current = current.nextNode;
                 position += 1;
             }
@@ -166,11 +164,15 @@ class linkedList{
 
 module.exports = linkedList
 // ADD
-// let list = new linkedList();
-// list.add(10);
-// list.add(20);
-// list.add(50);
+let list = new linkedList();
+list.add(10);
+list.add(20);
+list.add(30);
+list.add(40);
+list.add(50);
 
+// console.log(list.nodeAtIndex(4));
+// console.log(list.repr());
 // // INSERT
 // console.log(list.insert(40, 1));
 // console.log(list.repr());
