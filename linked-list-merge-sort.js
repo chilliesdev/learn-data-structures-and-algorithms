@@ -7,6 +7,8 @@ function mergeSort(linkedlist) {
     - Repeatedly merge the sublist to produce sorted sublist until one remains
 
     returns a sorted linked list
+
+    Runs in O(Kn log n)
     */
 
     if (linkedlist.size() <= 1){
@@ -27,6 +29,7 @@ function mergeSort(linkedlist) {
 function split(linkedlist) {
     /*
     Divide the unsorted list at midpoint into sublist
+    Takes O(K log n) time
     */
    if( linkedlist === null || linkedlist.head === null){
        let leftHalf = linkedlist;
@@ -42,7 +45,7 @@ function split(linkedlist) {
         var rightHalf = new linkedList();
         rightHalf.head = midNode.nextNode;
         midNode.nextNode = null;
-        
+
         return { leftHalf, rightHalf };
    }
 }
@@ -51,6 +54,7 @@ function merge(left, right) {
     /**
      * Merges two linked list, sorting by data in nodes
      * Returns a new marged list
+     * runs in O(n) time
      */
 
     // Create a new linked list that contains node from
